@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Sovereign Notepad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#F7F4EE;
+  --cream-dark:#EDE9E1;
+  --ink:#1A1814;
+  --ink-mid:#5A5650;
+  --ink-light:#9A9690;
+  --accent:#AFA395;
+  --accent-dark:#7A6E62;
+  --bd:rgba(26,24,20,0.1);
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:'EB Garamond',Georgia,serif;background:var(--cream);color:var(--ink);line-height:1.7;overflow-x:hidden}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  padding:1.2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;
+  transition:background .4s,border-color .4s;
+  border-bottom:.5px solid transparent;
+}
+nav.scrolled{background:rgba(247,244,238,.97);border-color:var(--bd);backdrop-filter:blur(8px)}
+.nav-word{font-family:'DM Sans',sans-serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(247,244,238,.8);text-decoration:none;transition:color .3s}
+nav.scrolled .nav-word{color:var(--ink)}
+.nav-r{display:flex;align-items:center;gap:2rem}
+.nav-lnk{font-family:'DM Sans',sans-serif;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(247,244,238,.55);text-decoration:none;transition:color .3s}
+nav.scrolled .nav-lnk{color:var(--ink-mid)}
+.nav-lnk:hover,.nav-word:hover{color:var(--cream)}
+nav.scrolled .nav-lnk:hover,nav.scrolled .nav-word:hover{color:var(--ink)}
+.nav-btn{font-family:'DM Sans',sans-serif;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);background:rgba(247,244,238,.9);border:none;padding:.55rem 1.3rem;cursor:pointer;text-decoration:none;transition:all .25s}
+nav.scrolled .nav-btn{color:var(--cream);background:var(--ink)}
+.nav-btn:hover{opacity:.82}
+
+/* ─── HERO ─── */
+#hero{
+  position:relative;height:100vh;min-height:680px;
+  display:flex;align-items:center;overflow:hidden;background:var(--ink)
+}
+.h-bg{
+  position:absolute;inset:0;
+  background-image:url('https://drive.google.com/thumbnail?id=1eOnomHJvUNMxj7S0F66s96AybvszFtQD&sz=w1400');
+  background-size:cover;background-position:center;
+  opacity:.28;transition:opacity 1.5s ease
+}
+.h-ov{
+  position:absolute;inset:0;
+  background:linear-gradient(105deg,rgba(26,24,20,.9) 38%,rgba(26,24,20,.35) 100%)
+}
+.h-in{position:relative;z-index:2;max-width:980px;margin:0 auto;padding:0 2.5rem;width:100%}
+.h-tag{
+  font-family:'EB Garamond',serif;font-size:1.15rem;font-style:italic;
+  color:rgba(247,244,238,.5);margin-bottom:1rem;
+  opacity:0;transform:translateY(12px);animation:fu .8s .3s forwards
+}
+.h-hl{
+  font-family:'EB Garamond',serif;font-size:clamp(1.5rem,2.8vw,2.1rem);font-weight:400;
+  line-height:1.4;color:var(--cream);margin-bottom:1.4rem;
+  opacity:0;transform:translateY(12px);animation:fu .8s .45s forwards
+}
+.h-big{
+  font-family:'EB Garamond',serif;font-size:clamp(3rem,7vw,5.5rem);font-weight:400;
+  line-height:1.05;letter-spacing:-.02em;color:var(--cream);margin-bottom:2.2rem;
+  opacity:0;transform:translateY(14px);animation:fu .9s .6s forwards
+}
+.h-big em{font-style:italic;color:rgba(247,244,238,.55)}
+.h-acts{display:flex;gap:1rem;align-items:center;opacity:0;transform:translateY(12px);animation:fu .8s .85s forwards}
+.btn-p{
+  font-family:'DM Sans',sans-serif;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink);background:var(--cream);border:none;padding:1rem 2rem;
+  cursor:pointer;text-decoration:none;display:inline-block;transition:all .25s
+}
+.btn-p:hover{background:var(--accent)}
+.btn-g{
+  font-family:'DM Sans',sans-serif;font-size:.75rem;letter-spacing:.05em;
+  color:rgba(247,244,238,.5);text-decoration:none;transition:color .2s
+}
+.btn-g:hover{color:var(--cream)}
+.h-scroll{
+  position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:.5rem;
+  z-index:2;opacity:0;animation:fu .8s 1.3s forwards
+}
+.scroll-ln{width:.5px;height:44px;background:rgba(247,244,238,.25);animation:sp 2.2s 1.5s infinite}
+.scroll-tx{font-family:'DM Sans',sans-serif;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(247,244,238,.3)}
+
+/* ─── PROBLEM ─── */
+#problem{padding:9rem 0;background:var(--ink)}
+.prob-wrap{max-width:660px;margin:0 auto;padding:0 2.5rem}
+.prob-line{
+  font-family:'EB Garamond',serif;font-size:clamp(1.5rem,3vw,2.2rem);
+  font-weight:400;line-height:1.5;color:rgba(247,244,238,.15);
+  margin-bottom:.5rem;transition:color .2s
+}
+.prob-line.on{color:var(--cream)}
+.prob-coda{
+  font-family:'DM Sans',sans-serif;font-size:.72rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--accent);
+  margin-top:3rem;opacity:0;transition:opacity 1s
+}
+.prob-coda.on{opacity:1}
+
+/* ─── UTIL ─── */
+.container{max-width:980px;margin:0 auto;padding:0 2.5rem}
+.lbl{font-family:'DM Sans',sans-serif;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-dark);margin-bottom:1rem}
+.lbl.lt{color:var(--accent)}
+.ttl{font-family:'EB Garamond',serif;font-size:clamp(1.9rem,3.5vw,2.7rem);font-weight:400;line-height:1.2;margin-bottom:1.5rem}
+.rule{height:.5px;background:var(--bd)}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .75s ease,transform .75s ease}
+.rv.on{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.22s}.d3{transition-delay:.34s}.d4{transition-delay:.46s}
+
+/* ─── WHAT IT IS ─── */
+#what{padding:8rem 0;background:var(--cream-dark)}
+.what-in{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
+.img-stack{position:relative;height:580px}
+.img-main{
+  position:absolute;top:0;left:0;width:72%;height:490px;
+  object-fit:cover;object-position:center
+}
+.img-sec{
+  position:absolute;bottom:0;right:0;width:54%;height:310px;
+  object-fit:cover;object-position:center;
+  border:4px solid var(--cream-dark)
+}
+.what-quote{
+  font-family:'EB Garamond',serif;font-size:1.18rem;font-style:italic;
+  color:var(--ink-mid);line-height:1.7;
+  border-left:2px solid var(--accent);padding-left:1.5rem;margin:2rem 0
+}
+.what-body{font-size:1.02rem;color:var(--ink-mid);line-height:1.9}
+.what-body p+p{margin-top:1rem}
+.specs{display:flex;flex-wrap:wrap;gap:1.5rem;margin-top:2.5rem;padding-top:2rem;border-top:.5px solid var(--bd)}
+.spec{font-family:'DM Sans',sans-serif;font-size:.7rem;color:var(--ink-light)}
+.spec strong{display:block;font-size:.74rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);margin-bottom:.2rem}
+
+/* ─── GALLERY ─── */
+#gallery{overflow:hidden}
+.gal-track{display:flex;height:500px}
+.gal-c{
+  flex:1;min-width:0;position:relative;overflow:hidden;
+  cursor:pointer;transition:flex .65s cubic-bezier(.4,0,.2,1)
+}
+.gal-c:hover{flex:2.4}
+.gal-c img{width:100%;height:100%;object-fit:cover;transition:transform .65s ease}
+.gal-c:hover img{transform:scale(1.05)}
+.gal-lbl{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:1.8rem 1.2rem 1.1rem;
+  background:linear-gradient(to top,rgba(26,24,20,.75),transparent);
+  font-family:'DM Sans',sans-serif;font-size:.63rem;letter-spacing:.1em;
+  text-transform:uppercase;color:rgba(247,244,238,.8);
+  opacity:0;transform:translateY(4px);transition:opacity .3s,transform .3s
+}
+.gal-c:hover .gal-lbl{opacity:1;transform:none}
+
+/* ─── PHILOSOPHY ─── */
+#philosophy{padding:9rem 0;background:var(--cream)}
+.phil-in{display:grid;grid-template-columns:1fr 1fr;gap:7rem;align-items:start}
+.phil-body{font-size:1.03rem;color:var(--ink-mid);line-height:1.9}
+.phil-body p+p{margin-top:1.2rem}
+.spiral-wrap{padding-top:2rem}
+.spi-head{font-family:'DM Sans',sans-serif;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-dark);margin-bottom:2.5rem}
+.spi-step{
+  display:flex;gap:1.5rem;padding:1.8rem 0;
+  border-bottom:.5px solid var(--bd);position:relative;overflow:hidden
+}
+.spi-step:first-of-type{border-top:.5px solid var(--bd)}
+.spi-n{
+  font-family:'EB Garamond',serif;font-size:3.2rem;font-weight:400;
+  color:rgba(175,163,149,.22);line-height:1;flex-shrink:0;
+  width:3rem;text-align:right;margin-top:-.3rem
+}
+.spi-name{font-family:'EB Garamond',serif;font-size:1.25rem;font-weight:500;margin-bottom:.35rem}
+.spi-desc{font-size:.95rem;color:var(--ink-mid);line-height:1.65}
+.spi-bar{position:absolute;left:0;bottom:0;height:1.5px;width:0;background:var(--accent);transition:width 1.3s ease}
+.spi-step.animate .spi-bar{width:100%}
+
+/* ─── OFFER ─── */
+#offer{padding:9rem 0;background:var(--ink)}
+.off-top{text-align:center;margin-bottom:5rem}
+.off-top .lbl{color:var(--accent);text-align:center}
+.off-top .ttl{color:var(--cream);text-align:center;margin:0 auto;max-width:640px}
+.off-sub{font-size:1.08rem;font-style:italic;color:rgba(247,244,238,.45);text-align:center;margin-top:.5rem}
+
+.off-grid{
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+  gap:1px;background:rgba(247,244,238,.07);margin-bottom:3.5rem
+}
+.off-card{
+  background:var(--ink);padding:2.4rem 2rem;position:relative;overflow:hidden;
+  transition:background .3s
+}
+.off-card:hover{background:rgba(247,244,238,.04)}
+.off-card::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:1.5px;
+  background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .4s
+}
+.off-card:hover::after{transform:scaleX(1)}
+.off-dot{
+  width:32px;height:32px;border:.5px solid rgba(175,163,149,.25);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:1.4rem
+}
+.off-dot-in{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.off-name{font-family:'EB Garamond',serif;font-size:1.18rem;font-weight:500;color:var(--cream);margin-bottom:.55rem}
+.off-desc{font-size:.93rem;color:rgba(247,244,238,.5);line-height:1.65}
+.off-val{margin-top:1.1rem;font-family:'DM Sans',sans-serif;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+
+/* GUARANTEE */
+.guar{
+  border:.5px solid rgba(175,163,149,.2);padding:4rem 3rem;
+  text-align:center;position:relative;overflow:hidden;margin-bottom:4rem;
+  background:rgba(175,163,149,.03)
+}
+.guar-badge{
+  font-family:'DM Sans',sans-serif;font-size:.62rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--accent);
+  background:rgba(175,163,149,.08);border:.5px solid rgba(175,163,149,.18);
+  padding:.45rem 1.1rem;display:inline-block;margin-bottom:1.8rem
+}
+.guar-hl{
+  font-family:'EB Garamond',serif;font-size:clamp(2rem,4vw,3rem);
+  font-weight:400;font-style:italic;color:var(--cream);
+  line-height:1.25;margin-bottom:1.2rem;max-width:700px;margin-left:auto;margin-right:auto
+}
+.guar-body{
+  font-size:1.05rem;color:rgba(247,244,238,.55);
+  max-width:540px;margin:0 auto 1.8rem;line-height:1.85
+}
+.guar-terms{font-family:'DM Sans',sans-serif;font-size:.7rem;color:rgba(247,244,238,.25);letter-spacing:.04em}
+
+/* PRICE */
+.price-sec{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.price-num{font-family:'EB Garamond',serif;font-size:5.5rem;font-weight:400;color:var(--cream);line-height:1}
+.price-sub{font-size:.98rem;color:rgba(247,244,238,.45);margin-top:.6rem;line-height:1.6}
+.price-ctx{font-family:'DM Sans',sans-serif;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-top:1.1rem}
+.price-cta{
+  width:100%;font-family:'DM Sans',sans-serif;font-size:.8rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink);background:var(--cream);border:none;
+  padding:1.2rem;cursor:pointer;transition:all .25s;display:block;
+  text-decoration:none;text-align:center;margin-bottom:1rem
+}
+.price-cta:hover{background:var(--accent)}
+.price-cta2{
+  width:100%;font-family:'DM Sans',sans-serif;font-size:.74rem;letter-spacing:.06em;
+  color:rgba(247,244,238,.4);background:transparent;
+  border:.5px solid rgba(175,163,149,.18);padding:1rem;
+  cursor:pointer;transition:all .25s;display:block;text-decoration:none;text-align:center
+}
+.price-cta2:hover{border-color:var(--accent);color:var(--accent)}
+.price-ship{font-family:'DM Sans',sans-serif;font-size:.67rem;color:rgba(247,244,238,.25);text-align:center;margin-top:.8rem;letter-spacing:.04em}
+
+/* ─── ABOUT ─── */
+#about{padding:9rem 0;background:var(--cream-dark)}
+.about-in{display:grid;grid-template-columns:5fr 7fr;gap:7rem;align-items:start}
+.about-portrait{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center top;margin-top:2rem;filter:grayscale(15%)}
+.about-body{font-size:1.04rem;color:var(--ink-mid);line-height:1.9}
+.about-body p+p{margin-top:1.3rem}
+.about-pull{
+  font-family:'EB Garamond',serif;font-size:1.3rem;font-style:italic;
+  color:var(--ink);line-height:1.65;
+  border-left:2px solid var(--accent);padding-left:1.5rem;margin:2.5rem 0
+}
+.about-sig{margin-top:2.5rem;font-family:'EB Garamond',serif;font-style:italic;font-size:1.12rem;color:var(--ink)}
+
+/* ─── EMAIL ─── */
+#email{padding:9rem 0;background:var(--ink)}
+.email-in{text-align:center;max-width:540px;margin:0 auto}
+.email-in .lbl{color:var(--accent);text-align:center}
+.email-in .ttl{color:var(--cream);text-align:center;margin:0 auto 1rem;max-width:100%}
+.email-sub{font-size:1.05rem;color:rgba(247,244,238,.45);margin-bottom:3rem;line-height:1.75}
+.e-form{display:flex;max-width:430px;margin:0 auto}
+.e-inp{
+  flex:1;font-family:'DM Sans',sans-serif;font-size:.9rem;
+  color:var(--cream);background:rgba(247,244,238,.05);
+  border:.5px solid rgba(175,163,149,.18);border-right:none;
+  padding:1rem 1.2rem;outline:none;transition:border-color .2s
+}
+.e-inp::placeholder{color:rgba(247,244,238,.25)}
+.e-inp:focus{border-color:rgba(175,163,149,.45)}
+.e-btn{
+  font-family:'DM Sans',sans-serif;font-size:.72rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink);background:var(--accent);
+  border:none;padding:1rem 1.4rem;cursor:pointer;white-space:nowrap;transition:background .2s
+}
+.e-btn:hover{background:var(--cream)}
+.e-note{margin-top:1.2rem;font-family:'DM Sans',sans-serif;font-size:.68rem;color:rgba(247,244,238,.2);letter-spacing:.04em}
+
+/* FOOTER */
+footer{padding:2.5rem;border-top:.5px solid var(--bd);display:flex;justify-content:space-between;align-items:center;background:var(--cream)}
+.ft-word{font-family:'DM Sans',sans-serif;font-size:.67rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-light);text-decoration:none}
+.ft-copy{font-family:'DM Sans',sans-serif;font-size:.67rem;color:var(--ink-light);letter-spacing:.04em}
+
+/* KEYFRAMES */
+@keyframes fu{to{opacity:1;transform:none}}
+@keyframes sp{0%,100%{opacity:.25}50%{opacity:.9}}
+
+/* RESPONSIVE */
+@media(max-width:820px){
+  #inside .rv[style*="grid-template-columns:repeat(5"]{grid-template-columns:repeat(3,1fr)!important}
+  #inside .rv[style*="grid-template-columns:1fr 1fr 1fr"]{grid-template-columns:1fr!important}
+}
+
+@media(max-width:820px){
+  nav{padding:1rem 1.25rem}
+  .nav-lnk{display:none}
+  .container,.h-in,.prob-wrap{padding:0 1.25rem}
+  .h-big{font-size:3rem}
+  .h-hl{font-size:1.15rem}
+  .what-in,.phil-in,.about-in,.price-sec{grid-template-columns:1fr;gap:3rem}
+  .img-stack{height:340px}
+  .gal-track{flex-direction:column;height:auto}
+  .gal-c{height:240px;flex:none}
+  .off-grid{grid-template-columns:1fr}
+  .e-form{flex-direction:column}
+  .e-inp{border-right:.5px solid rgba(175,163,149,.18);border-bottom:none}
+  footer{flex-direction:column;gap:.5rem;text-align:center}
+  .guar{padding:2.5rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#" class="nav-word">Sovereign Arcanum</a>
+  <div class="nav-r">
+    <a href="#philosophy" class="nav-lnk">Philosophy</a>
+    <a href="#about" class="nav-lnk">Story</a>
+    <a href="#offer" class="nav-btn">Get the Notepad</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="h-bg"></div>
+  <div class="h-ov"></div>
+  <div class="h-in">
+    <p class="h-hl">A physical daily notepad built to help you guide yourself for what matters,<br>rather than live a life that is not yours.</p>
+    <h1 class="h-big">You already know<br>who you are.<br><em>This is where<br>you return to it.</em></h1>
+    <div class="h-acts">
+      <a href="#offer" class="btn-p">Order yours — $28</a>
+      <a href="#problem" class="btn-g">See what this is ↓</a>
+    </div>
+  </div>
+  <div class="h-scroll">
+    <span class="scroll-tx">Scroll</span>
+    <div class="scroll-ln"></div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section id="problem">
+  <div class="prob-wrap">
+    <p class="prob-line">You wake up and the day is already decided.</p>
+    <p class="prob-line">You follow it. You're good at following it.</p>
+    <p class="prob-line">But there's a quiet tension you can't name.</p>
+    <p class="prob-line">A life that looks right from the outside.</p>
+    <p class="prob-line">And feels like someone else's from the inside.</p>
+    <p class="prob-line">Most tools make that life more efficient.</p>
+    <p class="prob-line">None of them ask if it's actually yours.</p>
+    <p class="prob-coda" id="prob-coda">Until now.</p>
+  </div>
+</section>
+
+<!-- WHAT IT IS -->
+<section id="what">
+  <div class="container">
+    <div class="what-in">
+      <div class="img-stack rv">
+        <img class="img-main" src="https://drive.google.com/thumbnail?id=1kBYK-W-e7OxqPZDuODt90o-3NNavtol1&sz=w1000" alt="The Sovereign Notepad cover" loading="lazy">
+        <img class="img-sec" src="https://drive.google.com/thumbnail?id=1jsc1tDPg03tkgl1XAj0Ij6CpCtCm11P8&sz=w800" alt="The Sovereign Notepad open" loading="lazy">
+      </div>
+      <div class="rv d2">
+        <p class="lbl">What it is</p>
+        <h2 class="ttl">Not a habit tracker.<br>Not a journal.<br>Something new.</h2>
+        <blockquote class="what-quote">"You know you have the choice. But it's not your fault that no one taught you what to do with this feeling."</blockquote>
+        <div class="what-body">
+          <p>Three time layers built into every notebook: a 28-day cycle, a 7-day direction, and a daily page with three columns — Schedule, Chosen, Now.</p>
+          <p>One question every night: <em>Was today mine?</em> No write line. No response expected. Just the question, alone with space above it.</p>
+          <p>Paper over phone. Handwriting encodes differently. One surface. No notifications. A thought has a place to land without being swallowed. The pocket is the point — it travels into the unsovereign world with you.</p>
+        </div>
+        <div class="specs">
+          <div class="spec"><strong>Size</strong>5.25 × 3.75 in</div>
+          <div class="spec"><strong>Font</strong>EB Garamond throughout</div>
+          <div class="spec"><strong>Cover</strong>Matte, debossed</div>
+          <div class="spec"><strong>Paper</strong>Cream, uncoated</div>
+          <div class="spec"><strong>Cycle</strong>28 days</div>
+          <div class="spec"><strong>Binding</strong>Reporter-flip</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- INSIDE THE NOTEPAD -->
+<section id="inside" style="padding:8rem 0;background:var(--cream)">
+  <div class="container">
+    <div class="rv" style="text-align:center;margin-bottom:4rem">
+      <p class="lbl" style="text-align:center">Inside the notepad</p>
+      <h2 class="ttl" style="text-align:center;margin:0 auto;max-width:500px">Every page is a decision. Every question is honest.</h2>
+    </div>
+    <div class="rv d1" style="display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;align-items:end">
+      <div style="display:flex;flex-direction:column;gap:0.5rem">
+        <img src='https://drive.google.com/thumbnail?id=1kBYK-W-e7OxqPZDuODt90o-3NNavtol1&sz=w600' alt='Opening page' style="width:100%;border:.5px solid var(--bd);display:block">
+        <p style="font-family:'DM Sans',sans-serif;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-light);text-align:center">Opening</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0.5rem">
+        <img src='https://drive.google.com/thumbnail?id=1qGEePHRF-NHG7AUrM6mrNpuTfWM43SAl&sz=w600' alt='The frameworks' style="width:100%;border:.5px solid var(--bd);display:block">
+        <p style="font-family:'DM Sans',sans-serif;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-light);text-align:center">The frameworks</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0.5rem;transform:translateY(-20px)">
+        <img src='https://drive.google.com/thumbnail?id=1oVsZizViKuAXYbPNtdm98IJlvUIuHpa9&sz=w600' alt='BEGIN page' style="width:100%;border:.5px solid var(--bd);display:block">
+        <p style="font-family:'DM Sans',sans-serif;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-light);text-align:center">Begin</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0.5rem">
+        <img src='https://drive.google.com/thumbnail?id=1jsc1tDPg03tkgl1XAj0Ij6CpCtCm11P8&sz=w600' alt='Weekly direction' style="width:100%;border:.5px solid var(--bd);display:block">
+        <p style="font-family:'DM Sans',sans-serif;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-light);text-align:center">7-day direction</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0.5rem;transform:translateY(-20px)">
+        <img src='https://drive.google.com/thumbnail?id=1TGhKkhS3k-RCpQ13NDR0YRUqDSQbiFQ8&sz=w600' alt='Daily page' style="width:100%;border:.5px solid var(--bd);display:block">
+        <p style="font-family:'DM Sans',sans-serif;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-light);text-align:center">Daily page</p>
+      </div>
+    </div>
+    <div class="rv d2" style="margin-top:3rem;padding-top:2.5rem;border-top:.5px solid var(--bd);display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem">
+      <div>
+        <p style="font-family:'DM Sans',sans-serif;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-dark);margin-bottom:.6rem">The opening</p>
+        <p style="font-size:.98rem;color:var(--ink-mid);line-height:1.75"><em>"On the path of your own becoming. You are here. In this life that is truly yours. This is where you return."</em> Generous white space. Forces slowness before anything else.</p>
+      </div>
+      <div>
+        <p style="font-family:'DM Sans',sans-serif;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-dark);margin-bottom:.6rem">The daily page</p>
+        <p style="font-size:.98rem;color:var(--ink-mid);line-height:1.75">Schedule / Chosen / Now. Three columns, triangular hierarchy. The Sovereign Paradox across three words. Closes with one question: <em>Was today mine?</em></p>
+      </div>
+      <div>
+        <p style="font-family:'DM Sans',sans-serif;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-dark);margin-bottom:.6rem">The return</p>
+        <p style="font-size:.98rem;color:var(--ink-mid);line-height:1.75">When you drift, open to where you left off. Begin again. The instruction card says it plainly. No shame. Re-entry is not failure — it is the whole mechanism.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="gal-track">
+    <div class="gal-c">
+      <img src="https://drive.google.com/thumbnail?id=1kJz4TraJRv_2tG6EGKiTLy_YwvD-36BI&sz=w1000" alt="The packaging" loading="lazy">
+      <div class="gal-lbl">The packaging</div>
+    </div>
+    <div class="gal-c">
+      <img src="https://drive.google.com/thumbnail?id=19e03suSh6cz743RtSs81aAtzMuSxCkrB&sz=w1000" alt="In the pocket" loading="lazy">
+      <div class="gal-lbl">In the pocket</div>
+    </div>
+    <div class="gal-c">
+      <img src="https://drive.google.com/thumbnail?id=1TGhKkhS3k-RCpQ13NDR0YRUqDSQbiFQ8&sz=w1000" alt="The daily page" loading="lazy">
+      <div class="gal-lbl">The daily page</div>
+    </div>
+    <div class="gal-c">
+      <img src="https://drive.google.com/thumbnail?id=1qGEePHRF-NHG7AUrM6mrNpuTfWM43SAl&sz=w1000" alt="The return" loading="lazy">
+      <div class="gal-lbl">The return</div>
+    </div>
+    <div class="gal-c">
+      <img src="https://drive.google.com/thumbnail?id=1oVsZizViKuAXYbPNtdm98IJlvUIuHpa9&sz=w1000" alt="On the desk" loading="lazy">
+      <div class="gal-lbl">On the desk</div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section id="philosophy">
+  <div class="container">
+    <div class="phil-in">
+      <div class="rv">
+        <p class="lbl">The philosophy</p>
+        <h2 class="ttl">The Spiral of Authorship</h2>
+        <div class="phil-body">
+          <p>You have always carried two things. What life gave you. And what you feel is truly you. You have always felt the distance between them. This notepad lives in that distance.</p>
+          <p>You cannot escape inherited structures. They are everywhere. The goal is not escape. The goal is conscious navigation of both simultaneously.</p>
+          <p>Presence is not the absence of tension. It is conscious occupation of the space between structure and authorship. Every daily page is a small act of occupation.</p>
+          <p>There is more of you than what has been lived.</p>
+        </div>
+      </div>
+      <div class="spiral-wrap rv d2">
+        <p class="spi-head">Four stages. Order is fixed and causal.</p>
+        <div class="spi-step">
+          <div class="spi-n">01</div>
+          <div>
+            <div class="spi-name">Exposure</div>
+            <div class="spi-desc">Something cracks the inherited world open. A person, moment, conversation. The loop becomes visible. Conditions can be created for it.</div>
+          </div>
+          <div class="spi-bar"></div>
+        </div>
+        <div class="spi-step">
+          <div class="spi-n">02</div>
+          <div>
+            <div class="spi-name">Recognition</div>
+            <div class="spi-desc">Seeing clearly what the exposure showed. Not just feeling it — seeing it. Honest seeing, from the inside out.</div>
+          </div>
+          <div class="spi-bar"></div>
+        </div>
+        <div class="spi-step">
+          <div class="spi-n">03</div>
+          <div>
+            <div class="spi-name">Creation</div>
+            <div class="spi-desc">Moving recognition out of the mind into physical reality. Each created action rewires identity because it is factual. Proof says something real happened.</div>
+          </div>
+          <div class="spi-bar"></div>
+        </div>
+        <div class="spi-step">
+          <div class="spi-n">04</div>
+          <div>
+            <div class="spi-name">Return</div>
+            <div class="spi-desc">Choosing this again. Not coming back to a destination — choosing the practice after drifting. Return is not failure. Return is the practice.</div>
+          </div>
+          <div class="spi-bar"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GRAND SLAM OFFER -->
+<section id="offer">
+  <div class="container">
+
+    <div class="off-top rv">
+      <p class="lbl lt">The complete offer</p>
+      <h2 class="ttl">Everything you need to begin, return, and continue.</h2>
+      <p class="off-sub">One dollar a day. For the thing that changes how every other day feels.</p>
+    </div>
+
+    <div class="off-grid rv d1">
+      <div class="off-card">
+        <div class="off-dot"><div class="off-dot-in"></div></div>
+        <div class="off-name">The Sovereign Notepad</div>
+        <div class="off-desc">Pocket-sized. EB Garamond throughout. Cream paper. Matte debossed cover. Bottom-to-top reporter flip. 28-day cycle, 7-day direction, daily page with Schedule / Chosen / Now.</div>
+        <div class="off-val">The object itself</div>
+      </div>
+      <div class="off-card">
+        <div class="off-dot"><div class="off-dot-in"></div></div>
+        <div class="off-name">Day One Clarity</div>
+        <div class="off-desc">The first morning you open it, you know exactly what the day is for. Not a promise. The architecture built into every page makes it unavoidable.</div>
+        <div class="off-val">Immediate</div>
+      </div>
+      <div class="off-card">
+        <div class="off-dot"><div class="off-dot-in"></div></div>
+        <div class="off-name">The Instruction Card</div>
+        <div class="off-desc">Hard stock. Four sections: Before you begin. Every day. Every week. When you drift. Open to where you left off. Begin again. The frameworks at the front are always there.</div>
+        <div class="off-val">Included inside</div>
+      </div>
+      <div class="off-card">
+        <div class="off-dot"><div class="off-dot-in"></div></div>
+        <div class="off-name">The Sovereign Sequence</div>
+        <div class="off-desc">One email every few days, written for exactly where you are in the 28-day cycle. Day three feels different from day fourteen. It knows the difference.</div>
+        <div class="off-val">Email support through the cycle</div>
+      </div>
+      <div class="off-card">
+        <div class="off-dot"><div class="off-dot-in"></div></div>
+        <div class="off-name">A handwritten note from Amon</div>
+        <div class="off-desc">Inside your first notepad. Because someone built this from real pain, not a business opportunity. Trust through evidence of genuine care, not marketing language.</div>
+        <div class="off-val">Personal</div>
+      </div>
+      <div class="off-card">
+        <div class="off-dot"><div class="off-dot-in"></div></div>
+        <div class="off-name">The Return Architecture</div>
+        <div class="off-desc">Built into every page. When you drift — and you will — the notepad assumes it and provides re-entry without shame. Long-term transformation is built by shortening the distance between lapse and return.</div>
+        <div class="off-val">By design</div>
+      </div>
+    </div>
+
+    <!-- GUARANTEE -->
+    <div class="guar rv d2">
+      <div class="guar-badge">The Sovereign Guarantee</div>
+      <h3 class="guar-hl">If after 28 days you don't feel more like yourself — you pay nothing and keep everything.</h3>
+      <p class="guar-body">Not because we're confident in our marketing. Because we're confident in what happens when someone finally has the right container. You have nothing to lose and one question to gain: <em>Was today mine?</em></p>
+      <p class="guar-terms">Full refund. No questions asked. You keep the notepad, the instruction card, the handwritten note. Every item. 28 days.</p>
+    </div>
+
+    <!-- PRICE -->
+    <div class="price-sec rv d3">
+      <div>
+        <div class="price-num">$28</div>
+        <div class="price-sub">One notepad. One 28-day cycle.<br>Everything above included.</div>
+        <div class="price-ctx">$1 per day · Free US shipping</div>
+      </div>
+      <div>
+        <a href="#email" class="price-cta">Join the waitlist — launching soon</a>
+        <a href="#philosophy" class="price-cta2">Read the philosophy first</a>
+        <p class="price-ship">First run: 100 units · Mercersburg Printing · Ships in kraft wrap</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-in">
+      <div class="rv">
+        <p class="lbl">Why I built this</p>
+        <h2 class="ttl">For me.<br>Not for the brand.</h2>
+        <img class="about-portrait" src="https://drive.google.com/thumbnail?id=1jsc1tDPg03tkgl1XAj0Ij6CpCtCm11P8&sz=w800" alt="Amon Yamamoto" loading="lazy">
+      </div>
+      <div class="rv d2">
+        <div class="about-body">
+          <p>Growing up I carried an ache I couldn't name and couldn't get help with. Not because the people around me didn't care. But they couldn't help with something they hadn't felt themselves. You can't point someone toward a door you've never seen.</p>
+          <p>I was good at functioning inside it. That made it harder to name. I wasn't failing. I wasn't in crisis. I was just quietly absent from my own life without knowing that was what was happening.</p>
+          <blockquote class="about-pull">"The ache wasn't a personal failing. It was the natural response of someone becoming conscious inside a world that wasn't designed for that consciousness."</blockquote>
+          <p>I built the Sovereign Notepad because I wish I had it in tenth grade. Not to fix what I felt. To give it a container. A structure that asked honest questions and expected nothing other than honesty in return.</p>
+          <p>The people who needed to help me couldn't. Not because they were wrong — but because the conditions for that help didn't exist. I got lucky. Something cracked it open for me eventually. Many people don't. That's the inequality I care about. Not financial. Existential.</p>
+          <p>I don't want that to be luck anymore.</p>
+        </div>
+        <div class="about-sig">— Amon Yamamoto, Founder · Sovereign Arcanum</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EMAIL -->
+<section id="email">
+  <div class="container">
+    <div class="email-in rv">
+      <p class="lbl lt">Stay close</p>
+      <h2 class="ttl">Be first when the door opens.</h2>
+      <p class="email-sub">First run is 100 units. Enter your email and we'll reach you before it goes public.</p>
+      <form class="e-form" onsubmit="handleSubmit(event)">
+        <input type="email" class="e-inp" placeholder="your@email.com" required id="e-field">
+        <button type="submit" class="e-btn">Join the list</button>
+      </form>
+      <p class="e-note" id="e-note">No noise. Just the moment it's available.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a href="#" class="ft-word">Sovereign Arcanum</a>
+  <span class="ft-copy">sovarc.co · The Sovereign Notepad · 2026</span>
+</footer>
+
+<script>
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>60),{passive:true});
+
+// Problem cinematic scroll
+const lines = document.querySelectorAll('.prob-line');
+const coda = document.getElementById('prob-coda');
+const prob = document.getElementById('problem');
+function updateProb(){
+  const r=prob.getBoundingClientRect();
+  const vh=innerHeight;
+  const p=Math.max(0,Math.min(1,(vh-r.top)/(r.height+vh)));
+  const n=Math.floor(p*(lines.length+2));
+  lines.forEach((l,i)=>l.classList.toggle('on',i<n));
+  coda.classList.toggle('on',n>=lines.length+1);
+}
+window.addEventListener('scroll',updateProb,{passive:true});
+updateProb();
+
+// Spiral bars
+const steps=document.querySelectorAll('.spi-step');
+const sObs=new IntersectionObserver(ee=>{
+  ee.forEach(e=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('animate'),120);sObs.unobserve(e.target);}});
+},{threshold:.5});
+steps.forEach(s=>sObs.observe(s));
+
+// Reveal
+const rvs=document.querySelectorAll('.rv');
+const rObs=new IntersectionObserver(ee=>{
+  ee.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');rObs.unobserve(e.target);}});
+},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+rvs.forEach(el=>rObs.observe(el));
+
+// Email
+function handleSubmit(e){
+  e.preventDefault();
+  const f=document.getElementById('e-field');
+  const n=document.getElementById('e-note');
+  if(f.value.trim()){
+    n.textContent="You're on the list. We'll reach out before launch.";
+    n.style.color='var(--accent)';
+    f.value='';
+  }
+}
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
+  });
+});
+</script>
+</body>
+</html>
