@@ -304,6 +304,38 @@ footer{padding:2.5rem;border-top:.5px solid var(--bd);display:flex;justify-conte
 @keyframes fu{to{opacity:1;transform:none}}
 @keyframes sp{0%,100%{opacity:.25}50%{opacity:.9}}
 
+
+/* ── MOBILE FIRST ── */
+@media(max-width:480px){
+  #hero{min-height:100svh}
+  .h-big{font-size:2.4rem !important;line-height:1.08}
+  .h-hl{font-size:1rem !important}
+  .h-acts{flex-direction:column;align-items:flex-start;gap:.75rem}
+  .btn-p{width:100%;text-align:center;padding:1rem}
+  #problem{padding:6rem 0}
+  .prob-line{font-size:1.3rem !important}
+  #what,#inside,#philosophy,#offer,#about,#email{padding:5rem 0}
+  .what-in,.phil-in,.about-in,.price-sec{grid-template-columns:1fr !important;gap:2.5rem}
+  .img-stack{height:280px !important}
+  .off-grid{grid-template-columns:1fr !important}
+  .guar{padding:2rem 1.25rem}
+  .guar-hl{font-size:1.6rem !important}
+  #inside .rv[style*="repeat(5"]{grid-template-columns:repeat(2,1fr) !important}
+  #inside .rv[style*="1fr 1fr 1fr"]{grid-template-columns:1fr !important}
+  .price-sec{gap:2rem}
+  .price-num{font-size:4rem !important}
+  .gal-track{flex-direction:column;height:auto}
+  .gal-c{height:220px;flex:none}
+  .e-form{flex-direction:column}
+  .e-inp{border-right:.5px solid rgba(175,163,149,.18) !important;border-bottom:none}
+  footer{flex-direction:column;gap:.5rem;text-align:center}
+  .about-in{grid-template-columns:1fr !important}
+  .ttl{font-size:1.75rem !important}
+  .section-title{font-size:1.75rem !important}
+  nav{padding:.9rem 1.25rem}
+  .container,.h-in,.prob-wrap{padding:0 1.25rem}
+  .spi-n{font-size:2.2rem;width:2.2rem}
+}
 /* RESPONSIVE */
 @media(max-width:820px){
   .h-in{grid-template-columns:1fr !important}
@@ -348,7 +380,7 @@ footer{padding:2.5rem;border-top:.5px solid var(--bd);display:flex;justify-conte
   <div class="h-bg"></div>
   <div class="h-ov"></div>
   <div class="h-in" style="display:grid;grid-template-columns:55fr 45fr;gap:2rem;align-items:center;max-width:980px;margin:0 auto;padding:0 2.5rem;width:100%">
-    <p class="h-hl">A pocket-sized daily notepad.<br>Built to help you live your own life — not the one that was handed to you.</p>
+    <p class="h-hl">You know the feeling. The day starts before you had a say in it.<br>This is built for that.</p>
     <h1 class="h-big">You already know<br>who you are.<br><em>This is where<br>you return to it.</em></h1>
     <div class="h-acts">
       <a href="#offer" class="btn-p">Order yours — $28</a>
@@ -373,12 +405,12 @@ footer{padding:2.5rem;border-top:.5px solid var(--bd);display:flex;justify-conte
 <section id="problem">
   <div class="prob-wrap">
     <p class="prob-line">You wake up and the day is already decided.</p>
-    <p class="prob-line">You follow it. You're good at following it.</p>
-    <p class="prob-line">But there's a quiet tension you can't name.</p>
-    <p class="prob-line">A life that looks right from the outside.</p>
-    <p class="prob-line">And feels like someone else's from the inside.</p>
-    <p class="prob-line">Most tools make that life more efficient.</p>
-    <p class="prob-line">None of them ask if it's actually yours.</p>
+    <p class="prob-line">You follow it. You're good at it.</p>
+    <p class="prob-line">But something feels off.</p>
+    <p class="prob-line">Everything looks fine from the outside.</p>
+    <p class="prob-line">But it doesn't feel like yours.</p>
+    <p class="prob-line">Every app, planner, and system just helps you do more of it.</p>
+    <p class="prob-line">None of them stop to ask: <em>is this even your life?</em></p>
     <p class="prob-coda" id="prob-coda">Until now.</p>
   </div>
 </section>
@@ -393,12 +425,12 @@ footer{padding:2.5rem;border-top:.5px solid var(--bd);display:flex;justify-conte
       </div>
       <div class="rv d2">
         <p class="lbl">What it is</p>
-        <h2 class="ttl">Not a habit tracker.<br>Not a gratitude journal.<br>Something that actually works differently.</h2>
-        <blockquote class="what-quote">"You know you have the choice. But it's not your fault that no one taught you what to do with this feeling."</blockquote>
+        <h2 class="ttl">Not a habit tracker.<br>Not a goal-setting system.<br>Something that asks a harder question.</h2>
+        <blockquote class="what-quote">"You know you have the choice. But it's not your fault that no one taught you what to do with this feeling. And you know exactly how it stays, day after day, if nothing changes."</blockquote>
         <div class="what-body">
-          <p>Every notepad runs for 28 days. Each day has one page with three columns: <em>Schedule</em> (what's already on your plate), <em>Chosen</em> (what you're deliberately doing today), and <em>Now</em> (what shows up unexpectedly).</p>
-          <p>At the end of every day: one checkbox. <em>Was today mine?</em> No writing required. Just honesty.</p>
-          <p>It's pocket-sized on purpose — so it goes everywhere with you. Paper instead of your phone. One surface, no notifications. When you have a thought worth keeping, it has somewhere to go.</p>
+          <p>28 days. One page per day. Three columns: <em>Schedule</em> — what the day already has in it. <em>Chosen</em> — what you're deliberately doing today. <em>Now</em> — what shows up that you didn't plan for.</p>
+          <p>One checkbox at the end of each day: <em>Was today mine?</em> No explanation needed. Just honest.</p>
+          <p>Pocket-sized on purpose. It goes everywhere with you — not waiting at a desk. Paper, not a phone. One surface. No notifications. Your thoughts have somewhere to land that isn't the internet.</p>
         </div>
         <div class="specs">
           <div class="spec"><strong>Size</strong>5.25 × 3.75 in</div>
@@ -446,15 +478,15 @@ footer{padding:2.5rem;border-top:.5px solid var(--bd);display:flex;justify-conte
     <div class="rv d2" style="margin-top:3rem;padding-top:2.5rem;border-top:.5px solid var(--bd);display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem">
       <div>
         <p style="font-family:'DM Sans',sans-serif;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-dark);margin-bottom:.6rem">The opening</p>
-        <p style="font-size:.98rem;color:var(--ink-mid);line-height:1.75"><em>"On the path of your own becoming. You are here. In this life that is truly yours. This is where you return."</em> Generous white space. Forces slowness before anything else.</p>
+        <p style="font-size:.98rem;color:var(--ink-mid);line-height:1.75"><em>"On the path of your own becoming. You are here. In this life that is truly yours. This is where you return."</em> Large white space. The first page asks nothing of you. It just places you.</p>
       </div>
       <div>
         <p style="font-family:'DM Sans',sans-serif;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-dark);margin-bottom:.6rem">The daily page</p>
-        <p style="font-size:.98rem;color:var(--ink-mid);line-height:1.75">Schedule / Chosen / Now. Three columns, triangular hierarchy. The Sovereign Paradox across three words. Closes with one question: <em>Was today mine?</em></p>
+        <p style="font-size:.98rem;color:var(--ink-mid);line-height:1.75">Three columns: Schedule / Chosen / Now. What the day has, what you chose, what arrived. Closes with one question: <em>Was today mine?</em> One checkbox. No write line. Just honest.</p>
       </div>
       <div>
         <p style="font-family:'DM Sans',sans-serif;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-dark);margin-bottom:.6rem">The return</p>
-        <p style="font-size:.98rem;color:var(--ink-mid);line-height:1.75">When you drift, open to where you left off. Begin again. The instruction card says it plainly. No shame. Re-entry is not failure — it is the whole mechanism.</p>
+        <p style="font-size:.98rem;color:var(--ink-mid);line-height:1.75">When you drift — and you will — open to where you left off. Begin again. <em>You are not behind. You are not late. You are here.</em> Return is not failure. It is the whole point.</p>
       </div>
     </div>
   </div>
@@ -495,10 +527,10 @@ footer{padding:2.5rem;border-top:.5px solid var(--bd);display:flex;justify-conte
         <p class="lbl">The philosophy</p>
         <h2 class="ttl">The Spiral of Authorship</h2>
         <div class="phil-body">
-          <p>You were born into a set of structures — school, family expectations, social roles — that started shaping your life before you had any say in it. Most people never question them. Not because they don't care, but because no one around them ever did either.</p>
-          <p>The goal isn't to reject those structures or blow up your life. The goal is to navigate them consciously — knowing which parts are yours and which parts were just handed to you.</p>
-          <p>This notepad is the daily practice of that navigation. Small, honest, and consistent. Over 28 days, it changes how you see your own days.</p>
-          <p>There is more of you than what has been lived yet.</p>
+          <p>Most people are living a life that was built for them before they were conscious enough to choose it. The structures filled in — school, expectations, routines, the path everyone around them was following — and became identity before anyone thought to ask.</p>
+          <p>The goal isn't to blow up your life. It's to navigate it consciously. To know which parts are actually yours and which parts you just inherited.</p>
+          <p>The notepad is the daily practice of that. Not once. Every day. Over 28 days it changes how you see your own hours.</p>
+          <p><em>There is more of you than what has been lived.</em></p>
         </div>
       </div>
       <div class="spiral-wrap rv d2">
@@ -605,7 +637,7 @@ footer{padding:2.5rem;border-top:.5px solid var(--bd);display:flex;justify-conte
         <div class="price-ctx">$1 per day · Free US shipping</div>
       </div>
       <div>
-        <a href="#email" class="price-cta">Join the waitlist — launching soon</a>
+        <a href="#email" class="price-cta">Reserve yours — only 100 in the first run</a>
         <a href="#philosophy" class="price-cta2">Read the philosophy first</a>
         <p class="price-ship">First run: 100 units · Mercersburg Printing · Ships in kraft wrap</p>
       </div>
@@ -643,8 +675,8 @@ footer{padding:2.5rem;border-top:.5px solid var(--bd);display:flex;justify-conte
   <div class="container">
     <div class="email-in rv">
       <p class="lbl lt">Stay close</p>
-      <h2 class="ttl">Be first when the door opens.</h2>
-      <p class="email-sub">First run is 100 units. Enter your email and we'll reach you before it goes public.</p>
+      <h2 class="ttl">Only 100 in the first run.</h2>
+      <p class="email-sub">Enter your email. We'll reach you before it goes public — before anyone else.</p>
       <form class="e-form" onsubmit="handleSubmit(event)">
         <input type="email" class="e-inp" placeholder="your@email.com" required id="e-field">
         <button type="submit" class="e-btn">Join the list</button>
