@@ -87,10 +87,10 @@ nav.scrolled .nav-btn{color:var(--cream);background:var(--ink)}
 }
 .h-bg{
   position:absolute;inset:0;
-  background-image:url('https://drive.google.com/thumbnail?id=1a2iAnLvD4AwKCwhHXM9ePu9Nw5wwxB9x&sz=w1600');
-  background-size:cover;background-position:center;
-  transform:scale(1.22) translateX(13%);transform-origin:center;
-  opacity:.38;transition:opacity 1.5s ease
+  background-image:url('https://drive.google.com/thumbnail?id=1MIZuysf13ZX-yqGHlJmvsHiUvYk4WLsI&sz=w1600');
+  background-size:cover;background-position:center right;
+  transform:scale(1.04);transform-origin:center;
+  opacity:.46;transition:opacity 1.5s ease
 }
 .h-ov{
   position:absolute;inset:0;
@@ -161,7 +161,7 @@ nav.scrolled .nav-btn{color:var(--cream);background:var(--ink)}
 /* ─── WHAT IT IS ─── */
 #what{padding:8rem 0;background:var(--cream-dark)}
 #what .container{max-width:1140px}
-.what-in{display:grid;grid-template-columns:1.05fr 1fr;gap:5.5rem;align-items:center}
+.what-in{display:grid;grid-template-columns:1.5fr 1fr;gap:4rem;align-items:center}
 .what-in .ttl{font-size:clamp(1.4rem,2.2vw,1.95rem);white-space:nowrap}
 
 
@@ -182,7 +182,7 @@ nav.scrolled .nav-btn{color:var(--cream);background:var(--ink)}
 .spec strong{display:block;font-size:.74rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);margin-bottom:.2rem}
 
 /* ─── GALLERY ─── */
-#gallery{background:var(--ink);padding:7rem 0;overflow:hidden}
+#gallery{background:var(--ink);padding:1.5rem 0 7rem;overflow:hidden}
 .gal-head{text-align:center;margin-bottom:3.5rem}
 .gal-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;max-width:1080px;margin:0 auto}
 .gal-card{margin:0;background:rgba(247,244,238,.035);border:1px solid rgba(247,244,238,.09);border-radius:9px;overflow:hidden;box-shadow:0 32px 55px -26px rgba(0,0,0,.75);transition:transform .6s cubic-bezier(.16,1,.3,1),box-shadow .6s cubic-bezier(.16,1,.3,1)}
@@ -360,7 +360,7 @@ footer{padding:2.5rem;border-top:.5px solid var(--bd);display:flex;justify-conte
 @media(max-width:700px){.what-in .ttl{white-space:normal}}
 @media(max-width:480px){
   #hero{min-height:100svh}
-  .h-bg{transform:scale(1.3) translateX(6%)!important}
+  .h-bg{transform:scale(1.08)!important;background-position:center!important}
   .h-big{font-size:2.4rem !important;line-height:1.08}
   .h-hl{font-size:1rem !important}
   .h-acts{flex-direction:column;align-items:flex-start;gap:.75rem}
@@ -561,27 +561,28 @@ footer{padding:2.5rem;border-top:.5px solid var(--bd);display:flex;justify-conte
 @media(max-width:820px){.pageSwiper .swiper-slide{width:250px}.pcar-btn{width:36px;height:36px}.pcar-btn svg{width:22px;height:22px}}
 @media(max-width:480px){.pageSwiper .swiper-slide{width:210px}}
 /* ─── INSIDE page cards (matches gallery) ─── */
+#inside,#gallery{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .incard-ctrls{display:flex;justify-content:center;gap:.8rem;margin-bottom:1.8rem}
 .incard-btn{width:42px;height:42px;border-radius:50%;border:1px solid rgba(247,244,238,.25);background:transparent;color:rgba(247,244,238,.8);font-size:1.3rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .3s,color .3s,border-color .3s}
 .incard-btn:hover{background:rgba(247,244,238,.1);color:var(--cream);border-color:rgba(247,244,238,.5)}
 
 .incard-track{display:flex;gap:2rem;overflow-x:auto;scroll-snap-type:x mandatory;padding:.5rem 1.5rem 2.2rem;margin:0 -1.5rem;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .incard-track::-webkit-scrollbar{display:none}
-.incard{flex:0 0 288px;scroll-snap-align:center;margin:0;background:rgba(247,244,238,.035);border:1px solid rgba(247,244,238,.09);border-radius:9px;overflow:hidden;box-shadow:0 32px 55px -26px rgba(0,0,0,.75);transition:transform .6s cubic-bezier(.16,1,.3,1),box-shadow .6s cubic-bezier(.16,1,.3,1)}
+.incard{flex:0 0 344px;scroll-snap-align:center;margin:0;background:rgba(247,244,238,.035);border:1px solid rgba(247,244,238,.09);border-radius:9px;overflow:hidden;box-shadow:0 32px 55px -26px rgba(0,0,0,.75);transition:transform .6s cubic-bezier(.16,1,.3,1),box-shadow .6s cubic-bezier(.16,1,.3,1)}
 .incard:hover{transform:translateY(-7px);box-shadow:0 44px 65px -26px rgba(0,0,0,.85)}
-.incard-img{background:#f3efe7;height:330px;display:flex;align-items:center;justify-content:center;padding:1.2rem}
+.incard-img{background:#f3efe7;height:392px;display:flex;align-items:center;justify-content:center;padding:1.2rem}
 .incard-img img{max-width:100%;max-height:100%;width:auto;height:auto;display:block;box-shadow:0 12px 26px -14px rgba(0,0,0,.45);border-radius:2px}
 .incard-meta{padding:1.4rem 1.5rem 1.7rem}
 .incard-n{font-family:'DM Sans',sans-serif;font-size:.64rem;letter-spacing:.2em;color:rgba(247,244,238,.4)}
-.incard-t{font-family:'EB Garamond',serif;font-size:1.3rem;color:#f3efe7;margin:.45rem 0 .55rem}
+.incard-t{font-family:'EB Garamond',serif;font-weight:400;font-size:1.32rem;color:#f3efe7;margin:.45rem 0 .55rem}
 .incard-d{font-family:'DM Sans',sans-serif;font-size:.85rem;line-height:1.6;color:rgba(247,244,238,.72);margin:0}
 #inside .lbl{color:rgba(247,244,238,.5)}
 #inside .ttl{color:var(--cream)}
-@media(max-width:600px){.incard{flex-basis:80%}.incard-img{height:300px}}
+@media(max-width:600px){.incard{flex-basis:84%}.incard-img{height:340px}}
 .h-tag{font-family:'EB Garamond',serif;font-size:clamp(1.12rem,2vw,1.45rem);font-weight:400;line-height:1.5;color:rgba(247,244,238,.82);margin-bottom:2.2rem;max-width:34ch;opacity:0;transform:translateY(12px);animation:fu .8s .7s forwards}
-.h-guar{font-family:'DM Sans',sans-serif;font-size:.8rem;line-height:1.55;color:rgba(247,244,238,.72);margin-top:1.9rem;max-width:48ch;display:flex;gap:.55rem;align-items:flex-start;opacity:0;transform:translateY(12px);animation:fu .8s 1s forwards}
+.h-guar{font-family:'DM Sans',sans-serif;font-size:.82rem;line-height:1.7;color:rgba(247,244,238,.78);margin-top:1.9rem;max-width:44ch;position:relative;padding-left:1.75rem;opacity:0;transform:translateY(12px);animation:fu .8s 1s forwards;-webkit-font-smoothing:antialiased}
 .h-guar strong{color:var(--cream);font-weight:600}
-.h-guar-mark{color:var(--cream);border:1px solid rgba(247,244,238,.45);border-radius:50%;min-width:1.15rem;height:1.15rem;display:inline-flex;align-items:center;justify-content:center;font-size:.62rem;margin-top:.12rem}
+.h-guar-mark{position:absolute;left:0;top:.2rem;color:var(--cream);border:1px solid rgba(247,244,238,.45);border-radius:50%;width:1.15rem;height:1.15rem;display:inline-flex;align-items:center;justify-content:center;font-size:.6rem}
 /* —— Before/After + How it works (What it is) —— */
 .ba-wrap{border:1px solid rgba(122,110,98,.22);border-radius:8px;padding:1.4rem;background:rgba(175,163,149,.05);box-shadow:0 30px 55px -28px rgba(26,24,20,.3)}
 .ba-pair{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
@@ -612,6 +613,9 @@ footer{padding:2.5rem;border-top:.5px solid var(--bd);display:flex;justify-conte
 .faq-i::after{top:0;left:7px;width:2px;height:16px}
 .faq-item[open] .faq-i::after{transform:rotate(90deg);opacity:0}
 .faq-item p{margin:1rem 0 0;font-family:'DM Sans',sans-serif;font-size:.95rem;line-height:1.7;color:var(--ink-mid);max-width:640px}
+.off-identity{font-family:'EB Garamond',serif;font-style:italic;font-size:clamp(1.1rem,1.8vw,1.38rem);line-height:1.55;color:var(--ink);max-width:36rem;margin:1.7rem auto .2rem}
+.off-identity strong{font-style:normal;font-weight:600;color:var(--accent-dark)}
+.what-signal{margin-top:1.9rem;font-family:'EB Garamond',serif;font-style:italic;font-size:1.05rem;line-height:1.55;color:var(--accent-dark)}
 </style>
 </head>
 <body>
@@ -630,7 +634,7 @@ footer{padding:2.5rem;border-top:.5px solid var(--bd);display:flex;justify-conte
 <section id="hero">
   <div class="h-bg"></div>
   <div class="h-ov"></div>
-  <div class="h-in" style="display:flex;flex-direction:column;justify-content:center;align-items:flex-start;max-width:700px;margin:0 auto;padding:6rem 2.5rem 0;width:100%">
+  <div class="h-in" style="display:flex;flex-direction:column;justify-content:center;align-items:flex-start;max-width:600px;margin:0;padding:6rem 2.5rem 0 max(2.5rem,7vw);width:100%">
     <p class="h-hl">You know the feeling — the day starts before you had a say in it.</p>
     <h1 class="h-big">The Sovereign Notepad</h1>
     <p class="h-tag">A pocket notepad and a 28-day practice for taking your days back — paper, not another app.</p>
@@ -685,6 +689,7 @@ footer{padding:2.5rem;border-top:.5px solid var(--bd);display:flex;justify-conte
           <div class="howit-step"><span class="howit-n">2</span><p><strong>Write the day.</strong> Schedule, Chosen, Now — what's set, what you choose, what shows up.</p></div>
           <div class="howit-step"><span class="howit-n">3</span><p><strong>Return to it.</strong> One question at the end: <em>was today mine?</em></p></div>
         </div>
+        <p class="what-signal">It's a small thing to carry. But it says something — that you take your own life seriously enough to write it down. That's who it's for.</p>
         <div class="specs">
           <div class="spec"><strong>Size</strong>5.25 × 3.75 in</div>
           <div class="spec"><strong>Font</strong>EB Garamond throughout</div>
@@ -700,7 +705,7 @@ footer{padding:2.5rem;border-top:.5px solid var(--bd);display:flex;justify-conte
 
 
 <!-- INSIDE THE NOTEPAD -->
-<section id="inside" style="padding:7rem 0;background:var(--ink)">
+<section id="inside" style="padding:7rem 0 3rem;background:var(--ink)">
   <div class="container">
     <div class="rv" style="text-align:center;margin-bottom:4rem">
       <p class="lbl" style="text-align:center">Inside the notepad</p>
@@ -717,7 +722,6 @@ footer{padding:2.5rem;border-top:.5px solid var(--bd);display:flex;justify-conte
     </div>
   </div>
 </section>
-<div class="rule"></div>
 <!-- GALLERY -->
 <section id="gallery">
   <div class="container">
@@ -784,6 +788,7 @@ footer{padding:2.5rem;border-top:.5px solid var(--bd);display:flex;justify-conte
       <h2 class="ttl">Everything you need to begin, return, and continue.</h2>
       <p class="off-sub">Just over a dollar a day across three cycles. For the thing that changes how every other day feels.</p>
       <p class="off-dream">Twenty-eight days from now: you wake up already knowing what the day is for — moving toward what's actually yours, feeling like yourself again. That's what you're buying. Not paper.</p>
+      <p class="off-identity">You're not buying a notepad. You're becoming the kind of person who takes their inner life seriously — who decides how the day goes instead of letting it happen to them. <strong>Become sovereign.</strong></p>
       <p class="off-scarcity">First run — only 100 notepads</p>
     </div>
 
@@ -923,6 +928,8 @@ footer{padding:2.5rem;border-top:.5px solid var(--bd);display:flex;justify-conte
       <details class="faq-item"><summary>What if I miss days?<span class="faq-i"></span></summary><p>You will — everyone does. This is the one planner built for exactly that. When you come back, it doesn't make you feel behind; it shows you where to pick up. Missing days isn't failure here. Returning is the whole point.</p></details>
       <details class="faq-item"><summary>What if I've tried planners before?<span class="faq-i"></span></summary><p>Most planners organize your tasks. This one asks a harder question — whether the day was actually yours. It isn't about doing more; it's about noticing what's worth doing. Different question, different result.</p></details>
       <details class="faq-item"><summary>Is it really just paper?<span class="faq-i"></span></summary><p>Yes — and that's the point. No notifications, no feed, no battery. One surface your thoughts can land on that isn't the internet. The paper is the feature, not a limitation.</p></details>
+      <details class="faq-item"><summary>Why 28 days?<span class="faq-i"></span></summary><p>Long enough to feel a real shift, short enough to actually finish. One cycle is a full loop — notice something, act on it, return when you drift. Twenty-eight days is where a practice starts to hold instead of fading by Friday.</p></details>
+      <details class="faq-item"><summary>Who is this for?<span class="faq-i"></span></summary><p>Anyone who feels the gap between how their days look and how they want to feel — and is ready to take it seriously. It's for the kind of person who'll carry something that says their inner life matters. If that sounds like you, it's for you.</p></details>
     </div>
   </div>
 </section>
