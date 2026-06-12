@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Sovereign Path — Net Worth Timeline</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #F7F4EE;
+      --cream-dark: #EDE9E1;
+      --ink: #1A1814;
+      --ink-mid: #5A5650;
+      --ink-light: #9A9690;
+      --accent: #AFA395;
+      --accent-dark: #7A6E62;
+      --gold: #C9A96E;
+      --gold-light: #E8D5B0;
+      --gold-dim: rgba(201,169,110,0.15);
+      --bd: rgba(247,244,238,0.10);
+      --bd-strong: rgba(247,244,238,0.20);
+      --neg: #8B4A4A;
+      --neg-light: rgba(139,74,74,0.18);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--ink);
+      color: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 2.5rem;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s, background 0.3s, backdrop-filter 0.3s;
+    }
+    nav.scrolled {
+      border-color: var(--bd);
+      background: rgba(26,24,20,0.85);
+      backdrop-filter: blur(14px);
+    }
+    .nav-logo { font-family: 'EB Garamond', serif; font-size: 1.15rem; letter-spacing: 0.04em; color: var(--cream); text-decoration: none; opacity: 0.9; }
+    .nav-logo span { color: var(--gold); }
+    .nav-back { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); text-decoration: none; border: 1px solid var(--bd-strong); padding: 0.5rem 1.1rem; border-radius: 2px; transition: border-color 0.2s, color 0.2s; }
+    .nav-back:hover { color: var(--cream); border-color: var(--gold); }
+
+    /* ── CONTAINER ── */
+    .container { max-width: 1020px; margin: 0 auto; padding: 0 2.5rem; }
+
+    /* ── REVEAL ── */
+    .rv { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .rv.on { opacity: 1; transform: none; }
+    .d1 { transition-delay: 0.08s; }
+    .d2 { transition-delay: 0.18s; }
+    .d3 { transition-delay: 0.30s; }
+    .d4 { transition-delay: 0.44s; }
+    .d5 { transition-delay: 0.58s; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      padding: 8rem 2.5rem 5rem;
+      background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,169,110,0.07) 0%, transparent 70%);
+      text-align: center; position: relative;
+    }
+    .hero-lbl {
+      font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.8rem; font-weight: 500;
+    }
+    .hero-title {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      line-height: 1.08; font-weight: 400;
+      color: var(--cream); margin-bottom: 1.5rem;
+      max-width: 800px; margin-left: auto; margin-right: auto;
+    }
+    .hero-title em { font-style: italic; color: var(--gold); }
+    .hero-sub {
+      font-size: clamp(0.9rem, 1.8vw, 1.05rem); color: var(--accent); max-width: 560px;
+      margin: 0 auto 3.5rem; line-height: 1.75; font-weight: 300;
+    }
+    .hero-stats {
+      display: flex; gap: 3rem; justify-content: center; flex-wrap: wrap;
+      padding-top: 2.5rem; border-top: 1px solid var(--bd);
+      max-width: 640px; margin: 0 auto;
+    }
+    .stat-item { text-align: center; }
+    .stat-n {
+      font-family: 'EB Garamond', serif; font-size: clamp(1.8rem, 4vw, 2.6rem);
+      color: var(--gold); display: block; line-height: 1; font-weight: 400;
+    }
+    .stat-l { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-light); margin-top: 0.4rem; display: block; }
+    .hero-scroll {
+      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      opacity: 0.4; animation: bob 2.2s ease-in-out infinite;
+    }
+    .hero-scroll span { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
+    .hero-scroll svg { width: 18px; height: 18px; }
+    @keyframes bob { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(5px); } }
+
+    /* ── CHART SECTION ── */
+    #chart-section {
+      padding: 6rem 0 4rem;
+      background: linear-gradient(180deg, transparent, rgba(201,169,110,0.03) 50%, transparent);
+    }
+    .section-lbl { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; font-weight: 500; }
+    .section-title { font-family: 'EB Garamond', serif; font-size: clamp(1.6rem, 3.5vw, 2.4rem); color: var(--cream); margin-bottom: 0.8rem; font-weight: 400; }
+    .section-sub { font-size: 0.9rem; color: var(--ink-light); max-width: 500px; line-height: 1.7; }
+
+    .chart-header { margin-bottom: 3rem; }
+    .chart-wrap {
+      position: relative; width: 100%; overflow: hidden;
+      border: 1px solid var(--bd); border-radius: 4px;
+      background: rgba(247,244,238,0.02);
+    }
+    .chart-svg { width: 100%; height: auto; display: block; }
+
+    /* Phase labels bar */
+    .phase-bar {
+      display: flex; border-top: 1px solid var(--bd); overflow: hidden;
+    }
+    .phase-seg {
+      flex: 1; text-align: center; padding: 0.65rem 0.3rem;
+      font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+      border-right: 1px solid var(--bd); font-weight: 500;
+    }
+    .phase-seg:last-child { border-right: none; }
+    .phase-seg.premed { color: #8BB8A8; background: rgba(139,184,168,0.06); }
+    .phase-seg.medschool { color: #A08BC0; background: rgba(160,139,192,0.06); }
+    .phase-seg.residency { color: #B89A6A; background: rgba(184,154,106,0.06); }
+    .phase-seg.attending { color: var(--gold); background: rgba(201,169,110,0.06); }
+    .phase-seg.practice { color: #7EB89A; background: rgba(126,184,154,0.06); }
+    .phase-seg.growth { color: #9EB87A; background: rgba(158,184,122,0.06); }
+    .phase-seg.legacy { color: #E8D5B0; background: rgba(232,213,176,0.06); }
+
+    /* Tooltip */
+    #chart-tooltip {
+      position: absolute; pointer-events: none; z-index: 20;
+      background: rgba(26,24,20,0.95); border: 1px solid var(--bd-strong);
+      border-radius: 3px; padding: 0.9rem 1.1rem; font-size: 0.82rem;
+      min-width: 200px; opacity: 0; transition: opacity 0.15s;
+      backdrop-filter: blur(8px);
+    }
+    #chart-tooltip.visible { opacity: 1; }
+    .tt-year { font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+    .tt-worth { font-family: 'EB Garamond', serif; font-size: 1.5rem; color: var(--cream); line-height: 1.1; }
+    .tt-worth.neg { color: var(--neg); }
+    .tt-label { font-size: 0.78rem; color: var(--accent); margin-top: 0.2rem; }
+    .tt-desc { font-size: 0.74rem; color: var(--ink-light); margin-top: 0.5rem; line-height: 1.5; border-top: 1px solid var(--bd); padding-top: 0.5rem; }
+
+    /* ── MILESTONES ── */
+    #milestones { padding: 6rem 0; }
+    .ms-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .ms-card {
+      border: 1px solid var(--bd); padding: 2rem 1.8rem; border-radius: 3px;
+      background: rgba(247,244,238,0.02); transition: border-color 0.3s, background 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .ms-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .ms-card.m1::before { background: linear-gradient(90deg, #8BB8A8, transparent); }
+    .ms-card.m2::before { background: linear-gradient(90deg, var(--neg), transparent); }
+    .ms-card.m3::before { background: linear-gradient(90deg, var(--gold), transparent); }
+    .ms-card.m4::before { background: linear-gradient(90deg, #7EB89A, transparent); }
+    .ms-card.m5::before { background: linear-gradient(90deg, #E8D5B0, transparent); }
+    .ms-card.m6::before { background: linear-gradient(90deg, var(--gold-light), transparent); }
+    .ms-card:hover { border-color: var(--bd-strong); background: rgba(247,244,238,0.04); }
+    .ms-card:hover::before { opacity: 1; }
+    .ms-yr { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 0.6rem; }
+    .ms-num { font-family: 'EB Garamond', serif; font-size: clamp(1.5rem, 3vw, 2rem); color: var(--cream); line-height: 1; margin-bottom: 0.5rem; }
+    .ms-num.neg { color: var(--neg); }
+    .ms-num .ms-gold { color: var(--gold); }
+    .ms-tag { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; font-weight: 500; }
+    .ms-desc { font-size: 0.84rem; color: var(--ink-light); line-height: 1.65; }
+
+    /* ── INCOME STREAMS ── */
+    #streams { padding: 6rem 0; border-top: 1px solid var(--bd); }
+    .streams-intro { max-width: 560px; margin-bottom: 4rem; }
+    .streams-table {
+      display: grid; gap: 0;
+      border: 1px solid var(--bd); border-radius: 4px; overflow: hidden;
+    }
+    .st-row {
+      display: grid; grid-template-columns: 180px 1fr 1fr 1fr 1fr;
+      border-bottom: 1px solid var(--bd);
+    }
+    .st-row:last-child { border-bottom: none; }
+    .st-cell {
+      padding: 1.1rem 1.4rem; font-size: 0.84rem;
+      border-right: 1px solid var(--bd);
+    }
+    .st-cell:last-child { border-right: none; }
+    .st-row.header .st-cell {
+      font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--ink-light); background: rgba(247,244,238,0.02); font-weight: 500;
+    }
+    .st-row.stream-row .st-cell:first-child { color: var(--accent); font-weight: 500; }
+    .st-cell .val { font-family: 'EB Garamond', serif; font-size: 1.1rem; color: var(--cream); display: block; line-height: 1.2; }
+    .st-cell .val.pos { color: var(--gold); }
+    .st-cell .val.neg { color: var(--neg); }
+    .st-cell .sub { font-size: 0.72rem; color: var(--ink-light); margin-top: 0.2rem; display: block; }
+    .st-row.total-row { background: rgba(201,169,110,0.06); }
+    .st-row.total-row .st-cell:first-child { color: var(--gold); font-weight: 500; letter-spacing: 0.04em; }
+    .st-row.total-row .st-cell .val { color: var(--gold); font-size: 1.2rem; }
+    .st-row.total-row .st-cell .val.neg { color: var(--neg); font-size: 1.2rem; }
+
+    /* ── ASSUMPTIONS ── */
+    #assumptions {
+      padding: 5rem 0; border-top: 1px solid var(--bd);
+      background: rgba(247,244,238,0.01);
+    }
+    .assum-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 2.5rem; }
+    .assum-item { padding: 1.2rem 1.5rem; border: 1px solid var(--bd); border-radius: 3px; }
+    .assum-item strong { font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 0.35rem; font-weight: 500; }
+    .assum-item span { font-size: 0.82rem; color: var(--ink-light); line-height: 1.6; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2.5rem; text-align: center;
+      border-top: 1px solid var(--bd);
+      font-size: 0.74rem; color: var(--ink-light); letter-spacing: 0.1em;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { color: var(--gold); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 820px) {
+      .ms-grid { grid-template-columns: 1fr 1fr; }
+      .st-row { grid-template-columns: 130px 1fr 1fr 1fr 1fr; }
+      .st-cell { padding: 0.85rem 0.8rem; font-size: 0.78rem; }
+      .assum-grid { grid-template-columns: 1fr; }
+      .phase-seg { font-size: 0.54rem; padding: 0.5rem 0.15rem; }
+    }
+    @media (max-width: 600px) {
+      .ms-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 2rem; }
+      .st-row { grid-template-columns: 110px 1fr 1fr 1fr 1fr; }
+      .st-cell { padding: 0.75rem 0.5rem; font-size: 0.72rem; }
+      .container { padding: 0 1.25rem; }
+      .phase-seg { display: none; }
+      .phase-seg.attending, .phase-seg.legacy { display: block; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav id="nav">
+    <a href="index.html" class="nav-logo">Sovereign <span>Notepad</span></a>
+    <a href="index.html" class="nav-back">← Back to Site</a>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section id="hero">
+    <div style="max-width:760px;margin:0 auto">
+      <p class="hero-lbl rv on">The Sovereign Path &mdash; 30-Year Financial Timeline</p>
+      <h1 class="hero-title rv on d1">From <em>$250k</em> to<br>a life of complete optionality.</h1>
+      <p class="hero-sub rv on d2">Physician. Founder. Trainer. Three income streams, one compounding engine. This is what happens when you do everything right — and you don't quit.</p>
+      <div class="hero-stats rv on d3">
+        <div class="stat-item">
+          <span class="stat-n">$250k</span>
+          <span class="stat-l">Starting Position</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-n" id="hero-peak">$24M+</span>
+          <span class="stat-l">Age 50 Projection</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-n">3</span>
+          <span class="stat-l">Income Pillars</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-n">30 yrs</span>
+          <span class="stat-l">To Build It</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </div>
+  </section>
+
+  <!-- ── CHART ── -->
+  <section id="chart-section">
+    <div class="container">
+      <div class="chart-header rv">
+        <p class="section-lbl">The Arc</p>
+        <h2 class="section-title">Net Worth, Year by Year</h2>
+        <p class="section-sub">Hover any point. The dip is real. So is what comes after.</p>
+      </div>
+      <div class="chart-wrap rv d1">
+        <svg id="chart-svg" class="chart-svg" viewBox="0 0 1000 480" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Net worth timeline from 2026 to 2056">
+          <defs>
+            <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#8BB8A8"/>
+              <stop offset="18%" stop-color="#A08BC0"/>
+              <stop offset="30%" stop-color="#B89A6A"/>
+              <stop offset="40%" stop-color="#C9A96E"/>
+              <stop offset="55%" stop-color="#7EB89A"/>
+              <stop offset="75%" stop-color="#9EB87A"/>
+              <stop offset="100%" stop-color="#E8D5B0"/>
+            </linearGradient>
+            <linearGradient id="areaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#C9A96E" stop-opacity="0.25"/>
+              <stop offset="70%" stop-color="#C9A96E" stop-opacity="0.05"/>
+              <stop offset="100%" stop-color="#C9A96E" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="negAreaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#8B4A4A" stop-opacity="0"/>
+              <stop offset="100%" stop-color="#8B4A4A" stop-opacity="0.2"/>
+            </linearGradient>
+            <clipPath id="chartClip">
+              <rect x="80" y="40" width="890" height="380"/>
+            </clipPath>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+              <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+
+          <!-- Grid lines and axis labels are drawn by JS -->
+          <g id="grid-group"></g>
+          <g id="axis-group"></g>
+
+          <!-- Phase bands -->
+          <g id="phase-bands" clip-path="url(#chartClip)"></g>
+
+          <!-- Zero line -->
+          <line id="zero-line" x1="80" x2="970" stroke="rgba(139,74,74,0.35)" stroke-width="1" stroke-dasharray="4 3"/>
+
+          <!-- Area fill below curve -->
+          <path id="area-path-neg" fill="url(#negAreaGrad)" clip-path="url(#chartClip)"/>
+          <path id="area-path" fill="url(#areaGrad)" clip-path="url(#chartClip)"/>
+
+          <!-- Main line -->
+          <path id="chart-line" fill="none" stroke="url(#lineGrad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)" clip-path="url(#chartClip)"/>
+
+          <!-- Data points (dots) -->
+          <g id="dots-group"></g>
+        </svg>
+
+        <!-- Phase labels bar -->
+        <div class="phase-bar">
+          <div class="phase-seg premed" style="flex:1.5">Pre-Med</div>
+          <div class="phase-seg medschool" style="flex:3">Medical School</div>
+          <div class="phase-seg residency" style="flex:2">Residency</div>
+          <div class="phase-seg attending" style="flex:0.8">Attending</div>
+          <div class="phase-seg practice" style="flex:2">Practice Owner</div>
+          <div class="phase-seg growth" style="flex:3">Compounding Growth</div>
+          <div class="phase-seg legacy" style="flex:4">Legacy Wealth</div>
+        </div>
+
+        <!-- Tooltip -->
+        <div id="chart-tooltip">
+          <div class="tt-year" id="tt-year"></div>
+          <div class="tt-worth" id="tt-worth"></div>
+          <div class="tt-label" id="tt-label"></div>
+          <div class="tt-desc" id="tt-desc"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MILESTONES ── -->
+  <section id="milestones">
+    <div class="container">
+      <div class="rv">
+        <p class="section-lbl">Key Inflections</p>
+        <h2 class="section-title">The Moments That Define the Arc</h2>
+      </div>
+      <div class="ms-grid">
+        <div class="ms-card m1 rv d1">
+          <div class="ms-yr">2026 &mdash; Age 20</div>
+          <div class="ms-num"><span class="ms-gold">$250,000</span></div>
+          <div class="ms-tag">The Launchpad</div>
+          <div class="ms-desc">Family savings give you a rare runway. Pre-med is underway. Sovereign Notepad launches as a side project. Personal training begins building clientele and habits.</div>
+        </div>
+        <div class="ms-card m2 rv d2">
+          <div class="ms-yr">2031 &mdash; Age 25</div>
+          <div class="ms-num neg">−$55,000</div>
+          <div class="ms-tag">The Trough</div>
+          <div class="ms-desc">Match Day. Four years of med school tuition have drawn down the $250k and added a small loan for living expenses. The lowest point. Everything from here is up.</div>
+        </div>
+        <div class="ms-card m3 rv d3">
+          <div class="ms-yr">2035 &mdash; Age 29</div>
+          <div class="ms-num"><span class="ms-gold">$520,000</span></div>
+          <div class="ms-tag">Triple Ignition</div>
+          <div class="ms-desc">First year as attending physician. $300k salary hits. Sovereign Notepad is generating $180k/year. Loans are cleared. All three income pillars firing simultaneously.</div>
+        </div>
+        <div class="ms-card m4 rv d1">
+          <div class="ms-yr">2038 &mdash; Age 32</div>
+          <div class="ms-num"><span class="ms-gold">$1,350,000</span></div>
+          <div class="ms-tag">First Million</div>
+          <div class="ms-desc">Practice is profitable in year three. Notepad crosses $250k/year. Investment portfolio has been compounding for three years. The flywheel is turning.</div>
+        </div>
+        <div class="ms-card m5 rv d2">
+          <div class="ms-yr">2043 &mdash; Age 37</div>
+          <div class="ms-num"><span class="ms-gold">$5,000,000</span></div>
+          <div class="ms-tag">Five Million</div>
+          <div class="ms-desc">Practice equity worth $1.5M. Investment portfolio fully compounding. Notepad could be a $500k/yr asset or a $3M acquisition target. Optionality is real.</div>
+        </div>
+        <div class="ms-card m6 rv d3">
+          <div class="ms-yr">2050 &mdash; Age 44</div>
+          <div class="ms-num"><span class="ms-gold">$14,000,000</span></div>
+          <div class="ms-tag">Optionality Unlocked</div>
+          <div class="ms-desc">Could sell the practice. Could sell Sovereign Notepad. Could retire. Could build more. True financial independence — not just wealthy, but free to choose the next chapter.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── INCOME STREAMS ── -->
+  <section id="streams">
+    <div class="container">
+      <div class="streams-intro rv">
+        <p class="section-lbl">The Three Pillars</p>
+        <h2 class="section-title">Annual Income by Phase</h2>
+        <p class="section-sub" style="margin-top:0.5rem">Each stream reaches escape velocity at a different time. That stagger is the strategy.</p>
+      </div>
+
+      <div class="streams-table rv d1">
+        <div class="st-row header">
+          <div class="st-cell">Stream</div>
+          <div class="st-cell">2028<br><span style="color:var(--ink-mid);font-size:0.65rem">Med School Y1</span></div>
+          <div class="st-cell">2032<br><span style="color:var(--ink-mid);font-size:0.65rem">Residency Y1</span></div>
+          <div class="st-cell">2035<br><span style="color:var(--ink-mid);font-size:0.65rem">Attending Y1</span></div>
+          <div class="st-cell">2040<br><span style="color:var(--ink-mid);font-size:0.65rem">Practice Y5</span></div>
+        </div>
+        <div class="st-row stream-row">
+          <div class="st-cell">Physician / Practice</div>
+          <div class="st-cell"><span class="val neg">−$60k</span><span class="sub">Tuition cost</span></div>
+          <div class="st-cell"><span class="val pos">$72k</span><span class="sub">Resident salary</span></div>
+          <div class="st-cell"><span class="val pos">$300k</span><span class="sub">Attending salary</span></div>
+          <div class="st-cell"><span class="val pos">$420k</span><span class="sub">Practice net income</span></div>
+        </div>
+        <div class="st-row stream-row">
+          <div class="st-cell">Sovereign Notepad</div>
+          <div class="st-cell"><span class="val pos">$20k</span><span class="sub">Early traction</span></div>
+          <div class="st-cell"><span class="val pos">$100k</span><span class="sub">Product-market fit</span></div>
+          <div class="st-cell"><span class="val pos">$180k</span><span class="sub">Scaling revenue</span></div>
+          <div class="st-cell"><span class="val pos">$320k</span><span class="sub">Mature SaaS/product</span></div>
+        </div>
+        <div class="st-row stream-row">
+          <div class="st-cell">Personal Training</div>
+          <div class="st-cell"><span class="val pos">$8k</span><span class="sub">Building clientele</span></div>
+          <div class="st-cell"><span class="val pos">$12k</span><span class="sub">Select clients</span></div>
+          <div class="st-cell"><span class="val pos">$20k</span><span class="sub">Premium private</span></div>
+          <div class="st-cell"><span class="val pos">$18k</span><span class="sub">Selective, joy-driven</span></div>
+        </div>
+        <div class="st-row stream-row">
+          <div class="st-cell">Investments</div>
+          <div class="st-cell"><span class="val">—</span><span class="sub">Preserving capital</span></div>
+          <div class="st-cell"><span class="val pos">$8k</span><span class="sub">Index funds, early</span></div>
+          <div class="st-cell"><span class="val pos">$25k</span><span class="sub">Portfolio building</span></div>
+          <div class="st-cell"><span class="val pos">$180k</span><span class="sub">Compounding returns</span></div>
+        </div>
+        <div class="st-row total-row">
+          <div class="st-cell">Annual Net</div>
+          <div class="st-cell"><span class="val neg">−$32k</span><span class="sub">Burn year</span></div>
+          <div class="st-cell"><span class="val pos">$192k</span><span class="sub">Recovery</span></div>
+          <div class="st-cell"><span class="val pos">$525k</span><span class="sub">Ignition</span></div>
+          <div class="st-cell"><span class="val pos">$938k</span><span class="sub">Near $1M/year</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ASSUMPTIONS ── -->
+  <section id="assumptions">
+    <div class="container">
+      <div class="rv">
+        <p class="section-lbl">Model Assumptions</p>
+        <h2 class="section-title" style="margin-bottom:0.5rem">What This Is Built On</h2>
+        <p style="font-size:0.84rem;color:var(--ink-light);max-width:480px;line-height:1.65">These are optimistic but achievable projections. Life will curve differently. The principles don't change.</p>
+      </div>
+      <div class="assum-grid rv d1">
+        <div class="assum-item">
+          <strong>Physician Specialty</strong>
+          <span>Family medicine or general practice. $280–340k attending salary. Own practice opens year 3–4 post-residency with ~$200k startup capital.</span>
+        </div>
+        <div class="assum-item">
+          <strong>Sovereign Notepad Growth</strong>
+          <span>Physical product evolves into digital/SaaS offering. Revenue grows 30–40% annually through year 8, then matures at $300–400k/yr or is acquired.</span>
+        </div>
+        <div class="assum-item">
+          <strong>Personal Training</strong>
+          <span>Stays intentionally small — private clients, premium pricing. $150–250/hr. 2–4 sessions/week. Never a burden, always a source of energy.</span>
+        </div>
+        <div class="assum-item">
+          <strong>Investment Rate</strong>
+          <span>25% of net income invested from year 1 of attending. Low-cost index funds, real estate considered post-million. 7–8% average annual return assumed.</span>
+        </div>
+        <div class="assum-item">
+          <strong>Education Costs</strong>
+          <span>$250k family savings covers most of med school tuition + living. ~$60k small loan taken in year 4. Cleared within 18 months of residency start.</span>
+        </div>
+        <div class="assum-item">
+          <strong>All Figures Nominal</strong>
+          <span>Not inflation-adjusted. Real purchasing power will be lower. $24M in 2056 dollars ≈ roughly $10–12M in today's purchasing power. Still life-changing.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <a href="index.html">sovarc.co</a> &nbsp;·&nbsp; The Sovereign Notepad &nbsp;·&nbsp; <span id="footer-year"></span>
+  </footer>
+
+  <script>
+    // ── DATA ──
+    const DATA = [
+      { year: 2026, age: 20, worth: 250000,   label: "The Launchpad",       phase: "premed",    desc: "Family savings baseline. Pre-med + Sovereign Notepad soft launch + first PT clients." },
+      { year: 2027, age: 21, worth: 215000,   label: "Pre-Med Grind",       phase: "premed",    desc: "College year 2. Notepad gains early traction. PT building reputation." },
+      { year: 2028, age: 22, worth: 165000,   label: "Med School — Year 1", phase: "medschool", desc: "First year tuition ($60k). Notepad generating $20k/yr. Savings cushion holding." },
+      { year: 2029, age: 23, worth: 95000,    label: "Step 1 Year",         phase: "medschool", desc: "Heavy boards prep. Notepad crosses $30k/yr. PT income steady at $8k." },
+      { year: 2030, age: 24, worth: 15000,    label: "Clinical Rotations",  phase: "medschool", desc: "Year 3 rotations. Savings nearly depleted by tuition. Notepad hits $50k/yr." },
+      { year: 2031, age: 25, worth: -55000,   label: "Match Day",           phase: "medschool", desc: "Year 4. Small living-expense loan drawn. The deepest point. Matched to residency." },
+      { year: 2032, age: 26, worth: -65000,   label: "Residency Begins",    phase: "residency", desc: "Residency year 1. $72k salary starts. Notepad momentum continues at $100k/yr." },
+      { year: 2033, age: 27, worth: 75000,    label: "Momentum Builds",     phase: "residency", desc: "Residency year 2. Loans cleared. Notepad passes $120k/yr. Net worth positive again." },
+      { year: 2034, age: 28, worth: 240000,   label: "Capital Forming",     phase: "residency", desc: "Residency year 3. Serious investing begins. Notepad at $150k/yr. Savings rate 35%+." },
+      { year: 2035, age: 29, worth: 520000,   label: "Triple Ignition",     phase: "attending", desc: "Year 1 as attending physician. $300k salary + $180k Notepad + $20k PT = $500k/yr." },
+      { year: 2036, age: 30, worth: 420000,   label: "Practice Launch",     phase: "practice",  desc: "$200k deployed to open private practice. Short-term dip, long-term equity building." },
+      { year: 2037, age: 31, worth: 780000,   label: "Break-Even",          phase: "practice",  desc: "Practice reaches break-even. All three income streams aligned. Net worth rebounding." },
+      { year: 2038, age: 32, worth: 1350000,  label: "First Million",       phase: "practice",  desc: "Practice profitable. Notepad at $250k/yr. Investment portfolio compounding hard." },
+      { year: 2039, age: 33, worth: 2000000,  label: "Two Million",         phase: "practice",  desc: "Practice equity growing. Portfolio crosses $400k. Notepad exploring acquisition offers." },
+      { year: 2040, age: 34, worth: 2800000,  label: "Compounding Kicks",   phase: "growth",    desc: "Practice equity $800k. Notepad $300k+/yr. Investment returns > $180k/yr." },
+      { year: 2042, age: 36, worth: 4200000,  label: "Four Million",        phase: "growth",    desc: "Practice worth $1.5M. Three income streams generating near $1M/yr combined." },
+      { year: 2045, age: 39, worth: 6800000,  label: "Peak Earning Years",  phase: "growth",    desc: "Peak physician income. Practice at full capacity. Portfolio fully compounding." },
+      { year: 2048, age: 42, worth: 10500000, label: "Ten Million",         phase: "legacy",    desc: "Investment portfolio alone generates $700k+/yr. True optionality achieved." },
+      { year: 2050, age: 44, worth: 14000000, label: "Optionality Unlocked",phase: "legacy",    desc: "Could sell practice ($3–5M). Could sell Notepad. Could retire. Chooses what's next." },
+      { year: 2053, age: 47, worth: 18500000, label: "Eighteen Million",    phase: "legacy",    desc: "Compounding dominates all other income. Every stream self-sustaining." },
+      { year: 2056, age: 50, worth: 24000000, label: "Sovereign Summit",    phase: "legacy",    desc: "Generational wealth secured. Legacy giving possible. Complete sovereign freedom." },
+    ];
+
+    const PHASE_COLORS = {
+      premed:    '#8BB8A8',
+      medschool: '#A08BC0',
+      residency: '#B89A6A',
+      attending: '#C9A96E',
+      practice:  '#7EB89A',
+      growth:    '#9EB87A',
+      legacy:    '#E8D5B0',
+    };
+
+    // ── CHART MATH ──
+    const SVG_W = 1000, SVG_H = 480;
+    const PAD_L = 80, PAD_R = 30, PAD_T = 40, PAD_B = 60;
+    const CW = SVG_W - PAD_L - PAD_R; // 890
+    const CH = SVG_H - PAD_T - PAD_B; // 380
+
+    const MIN_YEAR = 2026, MAX_YEAR = 2056;
+
+    // Split-scale: bottom 25% of chart covers -200k → 1M, top 75% covers 1M → 26M
+    function toY(worth) {
+      const breakWorth = 1000000;
+      const breakRatio = 0.25; // bottom 25% of chart height for < $1M section
+      const bottomH = CH * breakRatio;   // 95px for -200k → 1M
+      const topH    = CH * (1 - breakRatio); // 285px for 1M → 26M
+
+      const bottomMin = -200000;
+      const topMax    = 26000000;
+
+      if (worth <= breakWorth) {
+        const t = (worth - bottomMin) / (breakWorth - bottomMin);
+        return PAD_T + CH - bottomH * t;
+      } else {
+        const t = (worth - breakWorth) / (topMax - breakWorth);
+        return PAD_T + CH - bottomH - topH * t;
+      }
+    }
+
+    function toX(year) {
+      return PAD_L + (year - MIN_YEAR) / (MAX_YEAR - MIN_YEAR) * CW;
+    }
+
+    // Catmull-Rom → cubic bezier path
+    function catmullPath(pts) {
+      if (pts.length < 2) return '';
+      let d = `M ${pts[0].x.toFixed(1)} ${pts[0].y.toFixed(1)}`;
+      for (let i = 0; i < pts.length - 1; i++) {
+        const p0 = pts[Math.max(0, i - 1)];
+        const p1 = pts[i];
+        const p2 = pts[i + 1];
+        const p3 = pts[Math.min(pts.length - 1, i + 2)];
+        const alpha = 0.5;
+        const cp1x = p1.x + (p2.x - p0.x) * alpha / 3;
+        const cp1y = p1.y + (p2.y - p0.y) * alpha / 3;
+        const cp2x = p2.x - (p3.x - p1.x) * alpha / 3;
+        const cp2y = p2.y - (p3.y - p1.y) * alpha / 3;
+        d += ` C ${cp1x.toFixed(1)} ${cp1y.toFixed(1)}, ${cp2x.toFixed(1)} ${cp2y.toFixed(1)}, ${p2.x.toFixed(1)} ${p2.y.toFixed(1)}`;
+      }
+      return d;
+    }
+
+    function fmtWorth(n) {
+      const abs = Math.abs(n);
+      const sign = n < 0 ? '−' : '';
+      if (abs >= 1000000) return sign + '$' + (abs / 1000000).toFixed(abs >= 10000000 ? 1 : 2).replace(/\.?0+$/, '') + 'M';
+      if (abs >= 1000)    return sign + '$' + Math.round(abs / 1000) + 'k';
+      return sign + '$' + abs;
+    }
+
+    // ── DRAW CHART ──
+    function buildChart() {
+      const svg     = document.getElementById('chart-svg');
+      const gridGrp = document.getElementById('grid-group');
+      const axisGrp = document.getElementById('axis-group');
+      const dotsGrp = document.getElementById('dots-group');
+      const linePath = document.getElementById('chart-line');
+      const areaPath = document.getElementById('area-path');
+      const negAreaPath = document.getElementById('area-path-neg');
+      const zeroLine = document.getElementById('zero-line');
+      const phaseBands = document.getElementById('phase-bands');
+
+      const pts = DATA.map(d => ({ x: toX(d.year), y: toY(d.worth), data: d }));
+      const zeroY = toY(0);
+
+      // Zero line
+      zeroLine.setAttribute('y1', zeroY.toFixed(1));
+      zeroLine.setAttribute('y2', zeroY.toFixed(1));
+
+      // ── Grid lines + Y-axis labels ──
+      const yTicks = [-200000, 0, 500000, 1000000, 5000000, 10000000, 15000000, 20000000, 25000000];
+      yTicks.forEach(val => {
+        const y = toY(val).toFixed(1);
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', PAD_L); line.setAttribute('x2', PAD_L + CW);
+        line.setAttribute('y1', y); line.setAttribute('y2', y);
+        line.setAttribute('stroke', val === 0 ? 'rgba(139,74,74,0.0)' : 'rgba(247,244,238,0.05)');
+        line.setAttribute('stroke-width', '1');
+        gridGrp.appendChild(line);
+
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', (PAD_L - 8).toString());
+        text.setAttribute('y', (parseFloat(y) + 4).toFixed(1));
+        text.setAttribute('text-anchor', 'end');
+        text.setAttribute('font-family', 'DM Sans, sans-serif');
+        text.setAttribute('font-size', '9');
+        text.setAttribute('fill', val < 0 ? '#8B4A4A' : 'rgba(247,244,238,0.3)');
+        text.textContent = fmtWorth(val);
+        axisGrp.appendChild(text);
+      });
+
+      // X-axis labels
+      [2026, 2030, 2035, 2040, 2045, 2050, 2056].forEach(yr => {
+        const x = toX(yr).toFixed(1);
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', x);
+        text.setAttribute('y', (PAD_T + CH + 20).toFixed(1));
+        text.setAttribute('text-anchor', 'middle');
+        text.setAttribute('font-family', 'DM Sans, sans-serif');
+        text.setAttribute('font-size', '9');
+        text.setAttribute('fill', 'rgba(247,244,238,0.3)');
+        text.textContent = yr.toString();
+        axisGrp.appendChild(text);
+
+        const tick = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        tick.setAttribute('x1', x); tick.setAttribute('x2', x);
+        tick.setAttribute('y1', (PAD_T + CH).toFixed(1));
+        tick.setAttribute('y2', (PAD_T + CH + 5).toFixed(1));
+        tick.setAttribute('stroke', 'rgba(247,244,238,0.2)'); tick.setAttribute('stroke-width', '1');
+        axisGrp.appendChild(tick);
+      });
+
+      // Phase bands
+      const phases = [
+        { start: 2026, end: 2028, key: 'premed' },
+        { start: 2028, end: 2032, key: 'medschool' },
+        { start: 2032, end: 2035, key: 'residency' },
+        { start: 2035, end: 2036, key: 'attending' },
+        { start: 2036, end: 2040, key: 'practice' },
+        { start: 2040, end: 2048, key: 'growth' },
+        { start: 2048, end: 2056, key: 'legacy' },
+      ];
+      phases.forEach(ph => {
+        const x1 = toX(ph.start), x2 = toX(ph.end);
+        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rect.setAttribute('x', x1.toFixed(1)); rect.setAttribute('y', PAD_T.toString());
+        rect.setAttribute('width', (x2 - x1).toFixed(1)); rect.setAttribute('height', CH.toString());
+        const c = PHASE_COLORS[ph.key];
+        rect.setAttribute('fill', c + '10');
+        phaseBands.appendChild(rect);
+      });
+
+      // Curve path
+      const lineSvgPath = catmullPath(pts);
+      linePath.setAttribute('d', lineSvgPath);
+
+      // Animate line drawing
+      const pathLen = linePath.getTotalLength();
+      linePath.style.strokeDasharray = pathLen;
+      linePath.style.strokeDashoffset = pathLen;
+      linePath.style.transition = 'stroke-dashoffset 2.8s cubic-bezier(0.4, 0, 0.2, 1) 0.5s';
+
+      // Positive area fill (above zero)
+      const posAreaPts = pts.map(p => ({ ...p, y: Math.min(p.y, zeroY) }));
+      const posAreaD = catmullPath(posAreaPts) + ` L ${posAreaPts[posAreaPts.length - 1].x.toFixed(1)} ${zeroY.toFixed(1)} L ${posAreaPts[0].x.toFixed(1)} ${zeroY.toFixed(1)} Z`;
+      areaPath.setAttribute('d', posAreaD);
+
+      // Negative area fill (below zero)
+      const negPts = pts.filter(p => p.data.worth < 0);
+      if (negPts.length > 0) {
+        const negD = negPts.map((p, i) => (i === 0 ? `M ${p.x.toFixed(1)} ${zeroY.toFixed(1)}` : '') + ` L ${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(' ')
+          + ` L ${negPts[negPts.length-1].x.toFixed(1)} ${zeroY.toFixed(1)} Z`;
+        negAreaPath.setAttribute('d', negD);
+      }
+
+      // Dots
+      const tooltip = document.getElementById('chart-tooltip');
+      pts.forEach((pt, i) => {
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('cx', pt.x.toFixed(1));
+        circle.setAttribute('cy', pt.y.toFixed(1));
+        circle.setAttribute('r', '5');
+        circle.setAttribute('fill', pt.data.worth < 0 ? '#8B4A4A' : PHASE_COLORS[pt.data.phase]);
+        circle.setAttribute('stroke', '#1A1814');
+        circle.setAttribute('stroke-width', '2');
+        circle.style.cursor = 'pointer';
+        circle.style.opacity = '0';
+        circle.style.transition = `opacity 0.3s ${0.5 + i * 0.06}s`;
+
+        circle.addEventListener('mouseenter', (e) => {
+          const d = pt.data;
+          document.getElementById('tt-year').textContent = `${d.year} · Age ${d.age}`;
+          const tw = document.getElementById('tt-worth');
+          tw.textContent = fmtWorth(d.worth);
+          tw.className = 'tt-worth' + (d.worth < 0 ? ' neg' : '');
+          document.getElementById('tt-label').textContent = d.label;
+          document.getElementById('tt-desc').textContent = d.desc;
+
+          const svgRect = svg.getBoundingClientRect();
+          const wrapRect = svg.parentElement.getBoundingClientRect();
+          const scaleX = svgRect.width / SVG_W;
+          const scaleY = svgRect.height / SVG_H;
+
+          let tx = (pt.x * scaleX) + (svgRect.left - wrapRect.left) + 14;
+          let ty = (pt.y * scaleY) + (svgRect.top - wrapRect.top) - 60;
+
+          // Keep tooltip in bounds
+          const ttW = 220;
+          if (tx + ttW > wrapRect.width - 10) tx = tx - ttW - 28;
+          if (ty < 0) ty = 4;
+
+          tooltip.style.left = tx + 'px';
+          tooltip.style.top  = ty + 'px';
+          tooltip.classList.add('visible');
+
+          circle.setAttribute('r', '7');
+        });
+
+        circle.addEventListener('mouseleave', () => {
+          tooltip.classList.remove('visible');
+          circle.setAttribute('r', '5');
+        });
+
+        dotsGrp.appendChild(circle);
+      });
+
+      // Trigger animation when chart enters viewport
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            linePath.style.strokeDashoffset = '0';
+            dotsGrp.querySelectorAll('circle').forEach(c => { c.style.opacity = '1'; });
+            obs.disconnect();
+          }
+        });
+      }, { threshold: 0.2 });
+      obs.observe(svg);
+    }
+
+    // ── SCROLL REVEAL ──
+    function initReveal() {
+      const els = document.querySelectorAll('.rv:not(.on)');
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
+      }, { threshold: 0.08 });
+      els.forEach(el => obs.observe(el));
+    }
+
+    // ── NAV SCROLL ──
+    function initNav() {
+      const nav = document.getElementById('nav');
+      window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 40);
+      }, { passive: true });
+    }
+
+    // ── FOOTER YEAR ──
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+    // ── INIT ──
+    window.addEventListener('DOMContentLoaded', () => {
+      buildChart();
+      initReveal();
+      initNav();
+    });
+  </script>
+</body>
+</html>
